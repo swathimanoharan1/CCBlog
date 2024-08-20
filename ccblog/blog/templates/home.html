@@ -1,0 +1,142 @@
+{% extends "base.html" %} {% block metatags %}
+<title>Home | CodeCraft</title>
+
+<meta name="description" content="A destination for Learning" />
+<meta property="og:title" content="CodeCraft" />
+<meta property="og:site_name" content="CodeCraft" />
+<meta property="og:url" content="https://GeeksForGeeks.org" />
+<meta property="og:description" content="A destination for Learning" />
+<meta property="og:type" content="website" />
+
+{% endblock %} {% block content %}
+
+<style type="text/css">
+  body {
+    font-family: "Raleway", sans-serif;
+  }
+  .head_text {
+    color: white;
+  }
+  .h1,
+  h4 {
+    font-family: "Raleway", sans-serif;
+  }
+  #mainhome {
+    text-align: center;
+  }
+  .btn-custom {
+    background-color: #f2a74d;
+    color: #292929;
+    border: none;
+  }
+  .btn-custom:hover {
+    background-color: #ffcc80;
+    color: #292929;
+  }
+  .pagination .btn-custom {
+    margin: 0 5px;
+  }
+  .container {
+    padding: 0px;
+  }
+  .card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card {
+    margin-bottom: 1rem;
+  }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  @media (min-width: 768px) {
+    .card {
+      flex: 0 0 48%;
+      margin: 1%;
+    }
+  }
+  @media (min-width: 992px) {
+    .card {
+      flex: 0 0 48%;
+      margin: 1%;
+    }
+  }
+</style>
+
+{% comment %} welcome section {% endcomment %}
+  <header class="jumbotron" style="background-color: #292929; color: #f2a74d">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <img
+            src="/media/images/CodeCraftLogo1.jpeg"
+            width="130px"
+            height="130px"
+            alt="CodeCraft Logo"
+            class="img-fluid"
+            loading="lazy"
+          />
+        </div>
+        <div class="col-md-9">
+          <p class="h1">Welcome to <strong>CodeCraft</strong></p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+{% comment %} blog post section {% endcomment %}
+<div class="container" id="blogposts">
+  <div class="row">
+    <div class="d-flex flex-wrap justify-content-center">
+      {% for post in object_list %}
+      <div class="shadow-none card mb-4" id="newsfeed">
+        <div class="card-body">
+          <h3 class="card-title">{{ post.title }}</h3>
+          <p class="card-text text-muted h6">
+            <span
+              >{{ post.author.first_name }} {{ post.author.last_name }}</span
+            >
+            {{ post.created_on }}
+          </p>
+          <p class="card-text">{{ post.metades }}</p>
+          <span>
+            <a href="{% url 'post_detail' post.slug %}" class="btn btn-custom"
+              >Read More →</a
+            >
+          </span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% comment %} pagination {% endcomment %} {% if is_paginated %}
+    <nav aria-label="Page navigation container"></nav>
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li>
+        <a
+          href="?page={{ page_obj.previous_page_number }}"
+          class="btn btn-custom"
+          style="font-family: sans-serif"
+          >« PREV</a
+        >
+      </li>
+      {% endif %} {% if page_obj.has_next %}
+      <li>
+        <a
+          href="?page={{ page_obj.next_page_number }}"
+          class="btn btn-custom"
+          style="font-family: sans-serif"
+          >NEXT »</a
+        >
+      </li>
+      {% endif %}
+    </ul>
+{% endif %} {% endblock %}

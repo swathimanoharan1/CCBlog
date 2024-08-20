@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block metatags %}{% endblock %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: sans-serif;
+        font-size: 18px;
+        background-color: #f2f2f2;
+        display: flex;
+        flex-direction: column;
+        font-family: "Rubik", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #nofooter {
+        flex: 1 0 auto;
+      }
+      darkbtn {
+        color: #66ff99;
+      }
+      .dark-mode {
+        background-color: black;
+        color: white;
+      }
+      .card-group,
+      .card,
+      .card-footer,
+      .card-body {
+        border: none;
+      }
+      .nav-link {
+        color: #f2a74d !important;
+      }
+      .nav-link:hover {
+        color: #8b74f2 !important;
+      }
+
+      .navbar {
+        position: relative;
+      }
+      
+      .form-inline {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .navbar-nav{
+        flex-direction: row;
+      }
+      .nav-item {
+        margin-left: 20px;
+      }
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%288, 8, 8, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+      :root {
+        --light: #ffffff;
+        --dark: #000;
+        --hover-color: #8B74F2;
+      }
+      h3 {
+        font-family: "Noto Serif Display", serif;
+        font-size: 2.3rem;
+        font-weight: 300;
+        text-align: center;
+      }
+      a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 400;
+        transition: 0.3s ease-in;
+        border-bottom: 1px solid transparent;
+        margin-bottom: 0.5rem;
+        display: inline-flex;
+      }
+
+      a:hover {
+        color: var(--hover-color);
+        border-bottom: 1px solid var(--hover-color);
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .footer {
+        background-color: #292929;
+        color: #f2a74d;
+      }
+
+      .footer-inner {
+        background: var(--light);
+        border: 0.1px solid rgba(233, 232, 232, 0.208);
+        border-radius: 5px;
+        padding: 2rem;
+        margin: 1rem 0;
+      }
+
+      .newsletter form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 400px;
+        border-bottom: 1px solid var(--dark);
+        margin-bottom: 1rem;
+      }
+
+      .newsletter input {
+        padding: 0.75rem 0;
+        border: none;
+        background: none;
+        font-weight: 500;
+        transition: border 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        border-radius: 0;
+        width: 100%;
+        font-size: 1.05rem;
+        font-weight: bolder;
+      }
+
+      .newsletter input:focus {
+        outline: none;
+      }
+
+      .newsletter input::placeholder {
+        color: var(--dark);
+      }
+      .contact-form {
+        background-color: #292929;
+        padding: 20px;
+        border-radius: 5px;
+        color: #f2a74d;
+      }
+      
+      .contact-form h3 {
+        color: #f2a74d;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      
+      .contact-form .form-group {
+        margin-bottom: 15px;
+      }
+      
+      .contact-form .form-control {
+        background-color: #000000;
+        border: 1px solid #f2a74d;
+        color: #f2a74d;
+        border-radius: 5px;
+        padding: 10px;
+      }
+      
+      .contact-form .form-control:focus {
+        border-color: #8b74f2;
+        box-shadow: none;
+      }
+      
+      .contact-form label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #f2a74d;
+      }
+      
+      .btn-custom {
+        background-color: #f2a74d;
+        color: #292929;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      
+      .btn-custom:hover {
+        background-color: #ffcc80;
+        color: #292929;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="bodydiv">
+      <div id="nofooter">
+{% comment %} Nav bar section {% endcomment %}
+
+          <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top" id="topnav">
+          <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'posts' %}">
+            <img
+              src="/media/images/CodeCraftLogo1.jpeg"
+              width="30"
+              height="30"
+              class="d-inline-block rounded align-top"
+              alt="logo"
+              loading="lazy"
+            />
+            CodeCraft
+          </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link text-black font-weight-bold" href="{% url 'posts' %}">Posts</a>
+            </li>
+          </ul>
+          <!-- Search Bar -->
+          <form class="form-inline" method="GET" action="{% url 'search' %}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn my-2 my-sm-0 btn-custom" type="submit">Search</button>
+          </form>
+        </div>
+          </nav>
+      </div>
+      {% block content %}{% endblock content %}
+      </div>
+
+{% comment %} Contact form {% endcomment %}
+      {% block extra_content %}
+      <div class="container mt-5" id="contact">
+        <div class="footer-inner">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="newsletter_title">Send Message</h3>
+              <form method="POST" action="{% url 'contact' %}" class="contact-form">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="name">Name:</label>
+                  <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="message">Message:</label>
+                  <textarea id="message" name="message" rows="4" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-custom">Send Message</button>
+              </form>
+              {% if messages %}
+                <ul class="messages">
+                  {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    
+{% comment %} Footer section {% endcomment %}
+      <footer class="footer py-4">
+        <div class="container">
+          <div class="footer-inner">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="newsletter">
+                  <h3 class="newsletter_title">
+                    Get updates on fun stuff you probably want to know about in
+                    your inbox.
+                  </h3>
+                  <form action="">
+                    <input type="text" placeholder="Email Address" />
+                    <button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                      >
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path
+                          d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                        />
+                      </svg>
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <nav class="c-nav-tool">
+                  <h4 class="c-nav-tool_title">Menu</h4>
+                  <ul class="c-nav-tool_list">
+                    <li>
+                      <a href="#blogposts" class="c-link">All Blog</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'aboutus' %}" class="c-link">About Us</a>
+                    </li>
+                    <li><a href="#contact" class="c-link">Contact</a></li>
+                    <li><a href="/account/login" class="c-link">Login</a></li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="col-md-3">
+                <nav class="c-nav-tool">
+                  <h4 class="c-nav-tool_title">Quick Links</h4>
+                  <ul class="c-nav-tool_list">
+                    <li><a href="https://mail.google.com/mail/u/1/?view=cm&fs=1&to=swathimanoharan45303@gmail.com&tf=1">Gmail</a>
+                    </li>
+                    <li><a href="https://www.linkedin.com/in/swathi-manoharan-73673b1a6/" class="c-link">LinkedIn</a></li>
+                    <li><a href="#contact" class="c-link">Contact</a></li>
+                  </ul>
+                </nav>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <p>&copy; 2024 CodeCraft</p>
+          </div>
+        </div>
+      </footer>
+      {% endblock extra_content %}
+    </div>
+
+{% comment %} Script section {% endcomment %}
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+      integrity="sha384-pzjw8f+ua7Kw1TIqLR2p+vWfQu9TFk02kJ5XZ/6pMJtD9B2daH49xgoeNuZppS2K"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfC8GF4yoCIe24tnD3GvB4G6LRj5q6ST7Qpi1MQu/"
+      crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+
+</html>
