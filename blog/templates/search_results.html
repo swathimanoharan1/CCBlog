@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: "Rubik", sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      #nofooter {
+        flex: 1 0 auto;
+      }
+      .dark-mode {
+        background-color: black;
+        color: white;
+      }
+      .nav-link {
+        color: #f2a74d !important;
+      }
+      .nav-link:hover {
+        color: #8b74f2 !important;
+      }
+      .navbar {
+        position: relative;
+      }
+      .form-inline {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      :root {
+        --light: #ffffff;
+        --dark: #000;
+        --hover-color: #8b74f2;
+      }
+      h3 {
+        font-family: "Noto Serif Display", serif;
+        font-size: 2.3rem;
+        font-weight: 300;
+        text-align: center;
+      }
+      a {
+        text-decoration: none;
+        color: var(--dark);
+        transition: 0.3s ease-in;
+        border-bottom: 1px solid transparent;
+      }
+      a:hover {
+        color: var(--hover-color);
+        border-bottom: 1px solid var(--hover-color);
+      }
+      .footer {
+        background-color: #292929;
+        color: #f2a74d;
+      }
+      .contact-form {
+        background-color: #292929;
+        padding: 20px;
+        border-radius: 5px;
+        color: #f2a74d;
+      }
+      .contact-form h3 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .btn-custom {
+        background-color: #f2a74d;
+        color: #292929;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      .btn-custom:hover {
+        background-color: #ffcc80;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bodydiv">
+      <div id="nofooter">
+        <nav
+          class="navbar navbar-expand-lg navbar-light bg-light shadow"
+          id="topnav"
+        >
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+              <img
+                src="/media/images/CodeCraftLogo1.jpeg"
+                width="30"
+                height="30"
+                class="d-inline-block rounded align-top"
+                alt="logo"
+                loading="lazy"
+              />
+              CodeCraft
+            </a>
+            <div class="nav justify-content-end">
+              <div class="d-inline">
+                <a class="nav-link text-black font-weight-bold" href="/"
+                  >Posts</a
+                >
+              </div>
+              <form class="form-inline mx-auto" method="GET" action="/search/">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  name="q"
+                />
+                <button class="btn my-2 my-sm-0 btn-custom" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container mt-4">
+          <h1>Search Results for "{{ query }}"</h1>
+          {% if results %}
+          <ul>
+            {% for post in results %}
+            <li>
+              <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>No results found.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
