@@ -69,25 +69,25 @@
 </style>
 
 {% comment %} welcome section {% endcomment %}
-  <header class="jumbotron" style="background-color: #292929; color: #f2a74d">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-3">
-          <img
-            src="/media/images/CodeCraftLogo1.jpeg"
-            width="130px"
-            height="130px"
-            alt="CodeCraft Logo"
-            class="img-fluid"
-            loading="lazy"
-          />
-        </div>
-        <div class="col-md-9">
-          <p class="h1">Welcome to <strong>CodeCraft</strong></p>
-        </div>
+<header class="jumbotron" style="background-color: #292929; color: #f2a74d">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-3">
+        <img
+          src="/media/images/CodeCraftLogo1.jpeg"
+          width="130px"
+          height="130px"
+          alt="CodeCraft Logo"
+          class="img-fluid"
+          loading="lazy"
+        />
+      </div>
+      <div class="col-md-9">
+        <p class="h1">Welcome to <strong>CodeCraft</strong></p>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
 {% comment %} blog post section {% endcomment %}
 <div class="container" id="blogposts">
@@ -117,26 +117,26 @@
 </div>
 
 {% comment %} pagination {% endcomment %} {% if is_paginated %}
-    <nav aria-label="Page navigation container"></nav>
-    <ul class="pagination justify-content-center">
-      {% if page_obj.has_previous %}
-      <li>
-        <a
-          href="?page={{ page_obj.previous_page_number }}"
-          class="btn btn-custom"
-          style="font-family: sans-serif"
-          >« PREV</a
-        >
-      </li>
-      {% endif %} {% if page_obj.has_next %}
-      <li>
-        <a
-          href="?page={{ page_obj.next_page_number }}"
-          class="btn btn-custom"
-          style="font-family: sans-serif"
-          >NEXT »</a
-        >
-      </li>
-      {% endif %}
-    </ul>
+<nav aria-label="Page navigation container"></nav>
+<ul class="pagination justify-content-center">
+  {% if page_obj.has_previous %}
+  <li>
+    <a
+      href="?page={{ page_obj.previous_page_number }}"
+      class="btn btn-custom"
+      style="font-family: sans-serif"
+      >« PREV</a
+    >
+  </li>
+  {% endif %} {% if page_obj.has_next %}
+  <li>
+    <a
+      href="?page={{ page_obj.next_page_number }}"
+      class="btn btn-custom"
+      style="font-family: sans-serif"
+      >NEXT »</a
+    >
+  </li>
+  {% endif %}
+</ul>
 {% endif %} {% endblock %}

@@ -5,11 +5,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
-
-
-from django.shortcuts import render, redirect
-from .models import Contact
-from django.contrib import messages
+from django.shortcuts import render, get_object_or_404
 
 def contact(request):
     if request.method == "POST":
@@ -40,6 +36,12 @@ def search(request):
     query = request.GET.get('q', '').strip()
     results = Post.objects.filter(title__icontains=query) if query else Post.objects.none()
     return render(request, 'search_results.html', {'results': results, 'query': query})
+
+# Example view function
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'post.html', {'object': post})
+
 
 class HomeView(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
