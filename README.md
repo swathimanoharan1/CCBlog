@@ -1,2 +1,0 @@
-# CCBlog
-Developed a full-featured blog website using Python and Django, focusing on scalability and user experience. Implemented key functionalities such as a dynamic search feature, an 'About Us' page, and responsive design for seamless navigation across devices. Enhanced user interaction with a sticky navbar, pagination, and a center-aligned search bar. The project showcases strong skills in back-end development, front-end design, and user interface optimization, providing a smooth and engaging browsing experience.
