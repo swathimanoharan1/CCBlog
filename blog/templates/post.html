@@ -14,9 +14,10 @@
     height: 100px;
     opacity: 0.7;
     align-content: center;
-  }
-  #container img {
     opacity: 1;
+  }
+  #postbody{
+    background-color: white;
   }
   a {
     text-align: center;
@@ -29,7 +30,7 @@
     margin: 0 auto;
   }
   .btn-custom {
-    background-color: #f2a74d;
+    background-color: #49922C;
     color: #292929;
     border: none;
     margin: 20px 0px;
@@ -61,7 +62,7 @@
     "dateModified": "{{ object.created_on }}"
   }
 </script>
-<div class="container">
+<div class="container" id="postbody">
   <div class="row">
     <div class="col-12 center">
     </br>
@@ -88,4 +89,5 @@
 </div>
 {% endblock content %} {% block extra_content %}
 <!-- Do not include the contact form and footer in the post detail page -->
-{% endblock %} {% comment %} detailed post page {% endcomment %}
+{% endblock %} 
+{% comment %} detailed post page {% endcomment %}
